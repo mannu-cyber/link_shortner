@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
-import { postLink, getSlug } from "./controllers/link.js";
-
+import { postLink, getSlug, getLinks } from "./controllers/link.js";
 
 const app = express();
 app.use(express.json());
@@ -29,7 +28,7 @@ app.get("/health", (req, res) => {
 });
 
 app.post("/link", postLink);
-
+app.get("/links", getLinks);
 app.get("/:slug", getSlug);
 
 app.listen(PORT, () => {

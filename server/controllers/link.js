@@ -1,11 +1,11 @@
 import Link from "../models/Links.js";
 
 const postLink = async (req, res) => {
-  const { target, slug, title } = req.body;
+  const { url, slug, title } = req.body;
   const link = new Link({
-    target,
-    slug,
     title,
+    url,
+    slug,
   });
 
   const savedLink = await link.save();
@@ -16,6 +16,15 @@ const postLink = async (req, res) => {
   });
 };
 
+const getLinks = async (req, res) => {
+  const allLinks = await Link.find();
+
+  res.json({
+    success: true,
+    data: allLinks,
+    message: "all links fetched successfully",
+  });
+};
 //  redirecting slug
 
 const getSlug = async (req, res) => {
@@ -37,4 +46,4 @@ const getSlug = async (req, res) => {
 };
 
 // export { postLink }
-export { postLink, getSlug };
+export { postLink, getSlug, getLinks };

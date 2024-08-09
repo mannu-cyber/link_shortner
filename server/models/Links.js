@@ -2,7 +2,7 @@ import mongoose, { Schema, model } from "mongoose";
 
 const linkSchema = new Schema(
   {
-    target: {
+    url: {
       type: String,
       required: true,
     },
